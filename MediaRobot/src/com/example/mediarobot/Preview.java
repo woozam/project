@@ -25,7 +25,7 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		mCamera = Camera.open();
+		mCamera = Camera.open(1);
 		try {
 			mCamera.setPreviewDisplay(holder);
 			mCamera.setFaceDetectionListener(mFaceDetectionListener);
@@ -33,7 +33,7 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback {
 			Parameters parameters = mCamera.getParameters();
 			parameters.setFocusMode(Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
 			Log.i("face detection", String.valueOf(parameters.getMaxNumDetectedFaces()));
-			mCamera.setParameters(parameters);
+//			mCamera.setParameters(parameters);
 		} catch (IOException exception) {
 			mCamera.release();
 			mCamera = null;

@@ -42,9 +42,9 @@ public class FaceCaptureView extends View {
 	
 	private void drawFace(Canvas canvas, Face face) {
 		final Rect rect = face.rect;
-		int left = rect.left + 1000;
+		int left = 2000 - (rect.left + 1000);
 		int top = rect.top + 1000;
-		int right = rect.right + 1000;
+		int right = 2000 - (rect.right + 1000);
 		int bottom = rect.bottom + 1000;
 		int width = getWidth();
 		int height = getHeight();
