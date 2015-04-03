@@ -3,6 +3,7 @@ package com.example.mediarobot;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.hardware.Camera.Face;
@@ -24,6 +25,8 @@ public class FaceCaptureView extends View {
 		mStrokeWidth = CommonUtils.convertDipToPx(2);
 		mPaint.setStrokeWidth(mStrokeWidth);
 		mPaint.setARGB(0xff, 0xff, 0xff, 0xff);
+		mPaint.setTextAlign(Align.CENTER);
+		mPaint.setTextSize(CommonUtils.convertDipToPx(16));
 	}
 	
 	@Override
@@ -56,6 +59,10 @@ public class FaceCaptureView extends View {
 		canvas.drawLine(rightCoor, topCoor - mStrokeWidth / 2, rightCoor, bottomCoor + mStrokeWidth / 2, mPaint);
 		canvas.drawLine(leftCoor - mStrokeWidth / 2, topCoor, rightCoor + mStrokeWidth / 2, topCoor, mPaint);
 		canvas.drawLine(leftCoor - mStrokeWidth / 2, bottomCoor, rightCoor + mStrokeWidth / 2, bottomCoor, mPaint);
+		float distance = (20000f / rect.width());
+		float size = (3f * distance * rect.width() / 4000f);
+//		canvas.drawText(String.format("%dcm, %dcm", Math.round(distance), Math.round(size)), (leftCoor + rightCoor) / 2, (topCoor + bottomCoor) / 2, mPaint);
+		canvas.drawText(String.format("%dcm", Math.round(distance)), (leftCoor + rightCoor) / 2, (topCoor + bottomCoor) / 2, mPaint);
 	}
 	
 	public void captureFaceCapture(Face[] faces, Camera camera) {

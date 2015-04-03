@@ -42,15 +42,15 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        mCamera.startPreview();
+		mCamera.startPreview();
 	}
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		mCamera.setFaceDetectionListener(null);
 		mCamera.stopFaceDetection();
-        mCamera.stopPreview();
+		mCamera.stopPreview();
 		mCamera.release();
-        mCamera = null;
+		mCamera = null;
 	}
 }
