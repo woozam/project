@@ -34,7 +34,8 @@ public class MainActivity extends Activity implements FaceDetectionListener {
 	@Override
 	public void onFaceDetection(Face[] faces, Camera camera) {
 		if (faces.length > 0) {
-			mFaceCaptureView.captureFaceCapture(faces, camera);
+			FaceTracker.onFaceDetection(faces, camera);
+			mFaceCaptureView.captureFaceCapture(FaceTracker.getFaceWrappers());
 		}
 	}
 }
