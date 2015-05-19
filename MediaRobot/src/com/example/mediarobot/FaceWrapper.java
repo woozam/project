@@ -2,7 +2,6 @@ package com.example.mediarobot;
 
 import android.graphics.Rect;
 import android.hardware.Camera.Face;
-import android.util.Log;
 
 public class FaceWrapper {
 	
@@ -34,7 +33,6 @@ public class FaceWrapper {
 		setCoor();
 		if (temp != null) {
 			mVelocity = (float) (Math.sqrt(Math.pow(tempX - mX, 2) + Math.pow(tempY - mY, 2) + Math.pow(tempZ - mZ, 2)) / (mLastTime - tempLastTime) * 1000);
-			Log.i("velocity", String.valueOf(mVelocity));
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package com.example.mediarobot;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class DeviceListActivity extends Activity {
 	};
 
 	/** Simple container for a UsbDevice and its driver. */
-	private static class DeviceEntry {
+	public static class DeviceEntry {
 		public UsbDevice device;
 		public UsbSerialDriver driver;
 
@@ -198,8 +199,22 @@ public class DeviceListActivity extends Activity {
 	}
 
 	private void showConsoleActivity(UsbSerialDriver driver) {
-		sDriver = driver;
-		Intent intent = new Intent(this, SerialConsoleActivity.class);
-		startActivity(intent);
+		if (driver == null) {
+		} else {
+			try {
+				driver.open();
+				driver.setParameters(115200, 8, UsbSerialDriver.STOPBITS_1, UsbSerialDriver.PARITY_NONE);
+				sDriver = driver;
+				Intent intent = new Intent(this, MainActivity.class);
+				startActivity(intent);
+			} catch (IOException e) {
+				try {
+					driver.close();
+				} catch (IOException e2) {
+				}
+				driver = null;
+				return;
+			}
+		}
 	}
 }

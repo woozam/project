@@ -12,4 +12,8 @@ public class MRApplication extends Application {
 		super.onCreate();
 		CONTEXT = this;
 	}
+	
+	public static Context getContext() {
+		return CONTEXT;
+	}
 }
