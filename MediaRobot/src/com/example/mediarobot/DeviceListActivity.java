@@ -134,6 +134,8 @@ public class DeviceListActivity extends Activity {
 				showConsoleActivity(driver);
 			}
 		});
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
 	}
 
 	@Override

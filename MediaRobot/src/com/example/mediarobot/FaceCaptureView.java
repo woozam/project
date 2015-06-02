@@ -57,8 +57,9 @@ public class FaceCaptureView extends View {
 		canvas.drawLine(rightCoor, topCoor - mStrokeWidth / 2, rightCoor, bottomCoor + mStrokeWidth / 2, mPaint);
 		canvas.drawLine(leftCoor - mStrokeWidth / 2, topCoor, rightCoor + mStrokeWidth / 2, topCoor, mPaint);
 		canvas.drawLine(leftCoor - mStrokeWidth / 2, bottomCoor, rightCoor + mStrokeWidth / 2, bottomCoor, mPaint);
-		canvas.drawText(String.format("face %d", face.getNumber()), (leftCoor + rightCoor) / 2, (topCoor + bottomCoor) / 2 - 60, mPaint);
-		canvas.drawText(String.format("(%d, %d, %d), %dcm/s", face.getX(), face.getY(), face.getZ(), Math.round(face.getVelocity())), (leftCoor + rightCoor) / 2, (topCoor + bottomCoor) / 2, mPaint);
+//		canvas.drawText(String.format("face %d", face.getNumber()), (leftCoor + rightCoor) / 2, (topCoor + bottomCoor) / 2 - 60, mPaint);
+//		canvas.drawText(String.format("(%d, %d, %d), %dcm/s", face.getX(), face.getY(), face.getZ(), Math.round(face.getVelocity())), (leftCoor + rightCoor) / 2, (topCoor + bottomCoor) / 2, mPaint);
+		canvas.drawText(String.format("(%d, %d, %d)", face.getX(), face.getY(), face.getZ()), (leftCoor + rightCoor) / 2, (topCoor + bottomCoor) / 2, mPaint);
 	}
 	
 	public void captureFaceCapture(FaceWrapper[] faces) {

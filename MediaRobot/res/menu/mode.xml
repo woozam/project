@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/one"
+        android:title="Center"/>
+    <item
+        android:id="@+id/two"
+        android:title="Most close"/>
+    <item
+        android:id="@+id/three"
+        android:title="Mean"/>
+
+</menu>

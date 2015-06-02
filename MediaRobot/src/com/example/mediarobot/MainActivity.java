@@ -5,6 +5,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.Face;
 import android.hardware.Camera.FaceDetectionListener;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -12,8 +13,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 
-public class MainActivity extends Activity implements FaceDetectionListener, OnClickListener {
+public class MainActivity extends Activity implements FaceDetectionListener, OnClickListener, OnMenuItemClickListener {
 
 	public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -52,10 +54,11 @@ public class MainActivity extends Activity implements FaceDetectionListener, OnC
 
 	@Override
 	public void onFaceDetection(Face[] faces, Camera camera) {
-		if (faces.length > 0) {
-			FaceTracker.onFaceDetection(faces, camera);
-			mFaceCaptureView.captureFaceCapture(FaceTracker.getFaceWrappers());
-			send(FaceTracker.getFaceWrappers()[0]);
+		FaceTracker.onFaceDetection(faces, camera);
+		mFaceCaptureView.captureFaceCapture(FaceTracker.getFaceWrappers());
+		FaceWrapper selection = FaceSelectionPolicy.select(FaceTracker.getFaceWrappers());
+		if (selection != null) {
+			send(selection);
 		}
 	}
 
@@ -71,6 +74,7 @@ public class MainActivity extends Activity implements FaceDetectionListener, OnC
 	private void onClickMode() {
 		PopupMenu menu = new PopupMenu(this, mMode);
 		menu.inflate(R.menu.mode);
+		menu.setOnMenuItemClickListener(this);
 		menu.show();
 	}
 
@@ -103,5 +107,11 @@ public class MainActivity extends Activity implements FaceDetectionListener, OnC
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean onMenuItemClick(MenuItem item) {
+		FaceSelectionPolicy.changeMode(item.getItemId());
+		return true;
 	}
 }

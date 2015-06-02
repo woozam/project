@@ -72,6 +72,18 @@ public class FaceWrapper {
 		return mZ;
 	}
 	
+	public void setX(int x) {
+		mX = x;
+	}
+	
+	public void setY(int y) {
+		mY = y;
+	}
+	
+	public void setZ(int z) {
+		mZ = z;
+	}
+	
 	private void setCoor() {
 		final Rect rect = mFace.rect;
 		mZ = (20000 / rect.width());
